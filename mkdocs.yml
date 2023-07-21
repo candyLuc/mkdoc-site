@@ -1,0 +1,25 @@
+site_name: mkdoc技术站
+
+theme:
+  name: material
+  langage: zh
+  features:
+  - search.highlight
+  - navigation.sections
+  - navigation.top
+  - navigation.tabs
+  - navigation.tracking # 锚点导航
+  #    - content.tabs.link     # 链接的内容选项卡
+  palette: # 主题模式切换。
+  - media: "(prefers-color-scheme: light)" # 跟随系统主题模式
+    scheme: default
+    toggle:
+      icon: material/weather-sunny
+      name: Switch to dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    toggle:
+      icon: material/weather-night
+      name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
