@@ -1,0 +1,2546 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
+    
+    
+      
+        <title>Fastapi开发 - mkdoc技术站</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.eebd395e.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fastapi" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="mkdoc技术站" class="md-header__button md-logo" aria-label="mkdoc技术站" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            mkdoc技术站
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Fastapi开发
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+            
+              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+              </label>
+            
+          
+            
+            
+            
+            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+            
+              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+              </label>
+            
+          
+        </form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Welcome to MkDocs
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
+      Fastapi开发
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="mkdoc技术站" class="md-nav__button md-logo" aria-label="mkdoc技术站" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    mkdoc技术站
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome to MkDocs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Fastapi开发
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Fastapi开发
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 开发环境搭建
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 开发环境搭建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-python" class="md-nav__link">
+    1.1 Python 环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 开发工具
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 虚拟环境工具
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-git" class="md-nav__link">
+    1.4 Git 使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 项目初始化
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 项目初始化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 初始化项目结构
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 初始化项目基本信息
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 增加项目自述文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-gitignore" class="md-nav__link">
+    2.4 增加 .gitignore
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    2.5 安装开发包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-git" class="md-nav__link">
+    2.6 初始 Git 提交
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 项目功能开发
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 项目功能开发">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 创建命令行入口
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 引入项目配置系统
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    3.3 引入日志
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    3.4 数据访问
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    3.5 服务层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-fastapi" class="md-nav__link">
+    3.6 引入 Fastapi
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37" class="md-nav__link">
+    3.7 编写启动命令
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-server" class="md-nav__link">
+    3.8 启动 Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39" class="md-nav__link">
+    3.9 引入迁移工具
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 测试和优化代码
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 测试和优化代码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 测试数据访问层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    4.2 测试服务层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    4.3 测试试图层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    4.4 测试命令行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45" class="md-nav__link">
+    4.5 其他测试
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46" class="md-nav__link">
+    4.6 优化代码
+  </a>
+  
+    <nav class="md-nav" aria-label="4.6 优化代码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#461" class="md-nav__link">
+    4.6.1 优化导入
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#462" class="md-nav__link">
+    4.6.2 优化代码风格
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5. 打包发布
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 打包发布">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    5.1 打包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    5.2 发布
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 开发环境搭建
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 开发环境搭建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-python" class="md-nav__link">
+    1.1 Python 环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    1.2 开发工具
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 虚拟环境工具
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-git" class="md-nav__link">
+    1.4 Git 使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 项目初始化
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 项目初始化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 初始化项目结构
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 初始化项目基本信息
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    2.3 增加项目自述文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-gitignore" class="md-nav__link">
+    2.4 增加 .gitignore
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    2.5 安装开发包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-git" class="md-nav__link">
+    2.6 初始 Git 提交
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 项目功能开发
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 项目功能开发">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    3.1 创建命令行入口
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 引入项目配置系统
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    3.3 引入日志
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    3.4 数据访问
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    3.5 服务层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-fastapi" class="md-nav__link">
+    3.6 引入 Fastapi
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37" class="md-nav__link">
+    3.7 编写启动命令
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-server" class="md-nav__link">
+    3.8 启动 Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39" class="md-nav__link">
+    3.9 引入迁移工具
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 测试和优化代码
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 测试和优化代码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 测试数据访问层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    4.2 测试服务层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    4.3 测试试图层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    4.4 测试命令行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45" class="md-nav__link">
+    4.5 其他测试
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46" class="md-nav__link">
+    4.6 优化代码
+  </a>
+  
+    <nav class="md-nav" aria-label="4.6 优化代码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#461" class="md-nav__link">
+    4.6.1 优化导入
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#462" class="md-nav__link">
+    4.6.2 优化代码风格
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5. 打包发布
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 打包发布">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    5.1 打包
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    5.2 发布
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="fastapi">Fastapi开发</h1>
+<p>这是一个快速上手的示例项目，旨在通过一个尽可能包含主要知识点的简单项目，来向使用者展示一个更 Python 化的项目开发流程。</p>
+<p>示例项目是一个使用异步微 Web 框架 <a href="https://fastapi.tiangolo.com/">Fastapi</a> 开发的博客系统。项目业务功能比较简单，但完整体现了一个项目从环境搭建，到开发，最后测试发布的完整流程。</p>
+<h2 id="1">1. 开发环境搭建</h2>
+<h3 id="11-python">1.1 Python 环境</h3>
+<p>鉴于官方已经停止对 Python 2 的支持 <a href="https://www.python.org/doc/sunset-python-2/">^1</a> ，我们不推荐再使用 Python 2 进行开发。根据当前 Python 版本使用情况，推荐使用 Python 3.7+ 。</p>
+<p>具体的版本的 Python 环境可以在 <a href="https://www.python.org/downloads/">官网</a> 下载。为了使用便利性，可以选择 Anaconda [^2] 。</p>
+<h3 id="12">1.2 开发工具</h3>
+<p>推荐使用 <a href="https://www.jetbrains.com/pycharm/">Pycharm</a> 作为主要开发工具，可以选择社区版本免费使用。</p>
+<p><a href="https://code.visualstudio.com/">Visual Studio Code</a> 是微软开发的一款免费轻量文本编辑器，通过安装插件可以自定义成一款功能强大的 IDE 。在对 Python 的支持上，已经有了较为完善的插件体系，此方案也可以作为备用。</p>
+<h3 id="13">1.3 虚拟环境工具</h3>
+<p>推荐使用 <a href="https://python-poetry.org/">poetry</a>。poetry 相比使用 <code>requirements.txt</code> 管理依赖列表，更加强大。它支持同时管理开发生产环境依赖，自动查找虚拟环境，生成依赖锁定文件等其他特性。</p>
+<p>在安装好 Python 环境后，应该在全局环境中安装 poetry 。</p>
+<h3 id="14-git">1.4 Git 使用</h3>
+<p>推荐使用 <a href="https://git-scm.com/">Git</a> 对项目进行版本管理。所以需要提前安装 Git ，并熟悉常用 Git 的概念和常用 Git 命令。</p>
+<h2 id="2">2. 项目初始化</h2>
+<h3 id="21">2.1 初始化项目结构</h3>
+<p>项目结构采用 <code>src</code> 目录结构，详见 <a href="https://github.com/pypa/sampleproject">pypa/sampleproject</a> 。</p>
+<p>创建项目目录结构：</p>
+<pre><code class="language-txt">.
+├── README.md
+├── src
+│   └── example_blog
+│       └── __init__.py
+└── tests
+    └── __init__.py
+</code></pre>
+<p>初始化项目虚拟环境：</p>
+<pre><code class="language-bash">poetry init
+</code></pre>
+<p>根据交互式提示，进行相应内容选取填写，安装完成后，项目目录会自动生成 <code>pyproject.toml</code> 文件。</p>
+<h3 id="22">2.2 初始化项目基本信息</h3>
+<p>编辑 <code>pyproject.toml</code> 文件， 配置项目描述信息：</p>
+<pre><code class="language-toml">[tool.poetry]
+name = &quot;example_blog&quot;
+version = &quot;0.1.0&quot;
+description = &quot;This is example blog system.&quot;
+authors = [&quot;huagang517 &lt;huagang517@126.com&gt;&quot;]
+readme = &quot;README.md&quot;
+
+[tool.poetry.dependencies]
+python = &quot;^3.10&quot;
+
+[build-system]
+requires = [&quot;poetry-core&quot;]
+build-backend = &quot;poetry.core.masonry.api&quot;
+</code></pre>
+<h3 id="23">2.3 增加项目自述文件</h3>
+<p>编写 <code>README.md</code> 文件</p>
+<pre><code class="language-markdown"># 一个简单博客系统示例.
+
+此项目是一个简单的博客系统，提供一些用户管理和博客文章管理。目的是演示如何做一个更加 Pythonic 的项目。
+
+如果您有任何意见和建议，欢迎开启 ISSUE 发起讨论。期待与您打造更加完美的 Python 示例。
+
+## 协作开发
+
+- Fork 仓库
+- 编写代码，测试，提交
+- 发起 PR
+- 审核通过后合并，协作完成
+
+</code></pre>
+<h3 id="24-gitignore">2.4 增加 <code>.gitignore</code></h3>
+<pre><code class="language-txt"># Created by .ignore support plugin (hsz.mobi)
+### Python template
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+### Windows template
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+### Linux template
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
+### macOS template
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+.vscode
+.idea
+</code></pre>
+<h3 id="25">2.5 安装开发包</h3>
+<pre><code class="language-bash">poetry install 
+</code></pre>
+<h3 id="26-git">2.6 初始 Git 提交</h3>
+<pre><code class="language-bash">git init
+git config user.name example
+git config user.email example@example.com
+git add .
+git commit -m &quot;feat: First commit!&quot;
+</code></pre>
+<h2 id="3">3. 项目功能开发</h2>
+<h3 id="31">3.1 创建命令行入口</h3>
+<p>命令行入口是启动项目的主入口，常见的做法是使用一个 <code>__main__</code> 函数，调用启动代码，然后使用 <code>python</code> 命令启动该文件。但对于多级命令参数的情况就比较麻烦，推荐使用 <a href="https://click.palletsprojects.com/en/7.x/">click</a> 工具编写入口逻辑。</p>
+<p>安装依赖：</p>
+<pre><code class="language-bash">poetry add click
+</code></pre>
+<p>查看 <code>pyproject.toml</code> ，将增加安装依赖：</p>
+<pre><code class="language-toml">[tool.poetry.dependencies]
+click = &quot;^8.1.3&quot;
+</code></pre>
+<p>创建 <code>src/example_blog/cmdline.py</code> 文件：</p>
+<pre><code class="language-python">@click.group(invoke_without_command=True)
+@click.pass_context
+@click.option('-V', '--version', is_flag=True, help='Show version and exit.')
+def main(ctx, version):
+    if version:
+        click.echo(__version__)
+    elif ctx.invoked_subcommand is None:
+        click.echo(ctx.get_help())
+
+</code></pre>
+<p>编辑 <code>pyproject.toml</code> ，将命令行入口注册到项目描述文件中：</p>
+<pre><code class="language-toml">[tool.poetry.scripts]
+example_blog = &quot;example_blog.cmdline:main&quot;
+</code></pre>
+<p>提交代码：</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;feat: Add cmdline.&quot;
+</code></pre>
+<h3 id="32">3.2 引入项目配置系统</h3>
+<p>项目的配置系统是一个项目的核心驱动，使用配置系统便于管理散落在各处的配置参数，也方便在启动前通过调整配置，改变系统行为。</p>
+<p><a href="https://www.dynaconf.com/">Dynaconf</a> 是一个高度灵活的配置管理工具，支持多环境分层，多种配置导入等有点。在项目开发中，推荐使用如下实践。</p>
+<p>安装依赖：</p>
+<pre><code class="language-bash">poetry add dynaconf
+</code></pre>
+<p>查看 <code>pyproject.toml</code> ，将增加安装依赖：</p>
+<pre><code class="language-toml">[tool.poetry.dependencies]
+click = &quot;^8.1.3&quot;
+dynaconf = &quot;^3.1.11&quot;
+</code></pre>
+<p>建立配置包，和配置文件：</p>
+<pre><code class="language-bash">mkdir src/example_blog/config
+touch src/example_blog/config/__init__.py
+touch src/example_blog/config/settings.yml
+</code></pre>
+<p>编辑 <code>src/example_blog/config/__init__.py</code> ， 初始化全局配置对象：</p>
+<pre><code class="language-python">import os
+import sys
+from pathlib import Path
+
+from dynaconf import Dynaconf
+
+_BASE_DIR = Path(__file__).parent.parent
+
+settings_files = [
+    Path(__file__).parent / 'settings.yml',
+]  # 指定绝对路径加载默认配置
+
+settings = Dynaconf(
+    envvar_prefix=&quot;EXAMPLE_BLOG&quot;,  # 环境变量前缀。设置`EXAMPLE_BLOG_FOO='bar'`，使用`settings.FOO`
+    settings_files=settings_files,
+    environments=False,  # 启用多层次日志，支持 dev, pro
+    load_dotenv=True,  # 加载 .env
+    env_switcher=&quot;EXAMPLE_BLOG_ENV&quot;,  # 用于切换模式的环境变量名称 EXAMPLE_BLOG_ENV=production
+    lowercase_read=False,  # 禁用小写访问， settings.name 是不允许的
+    includes=[os.path.join(sys.prefix, 'etc', 'example_blog', 'settings.yml')],  # 自定义配置覆盖默认配置
+    base_dir=_BASE_DIR,  # 编码传入配置
+)
+
+</code></pre>
+<p>编辑 <code>src/example_blog/config/settings.yml</code> ，初始化配置：</p>
+<pre><code class="language-yaml">LOG_LEVEL: INFO
+</code></pre>
+<p>编辑 <code>src/example_blog/config/settings.local.yml</code> ，增加本地开发配置：</p>
+<pre><code class="language-yaml">LOG_LEVEL: DEBUG
+</code></pre>
+<p>根据 <a href="https://www.dynaconf.com/">Dynaconf</a> 规则， <code>settings.local.yml</code> 的配置为本地配置，且优先级比 <code>settings.yml</code> 低，所以本地配置会在后面加载，覆盖之前的配置。</p>
+<p>编辑 <code>.gitignore</code> ，将所有本地配置排除版本控制之外。</p>
+<pre><code class="language-txt">**/settings.local.yml
+</code></pre>
+<p>提交代码:</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;feat: Add config.&quot;
+</code></pre>
+<h3 id="33">3.3 引入日志</h3>
+<p>创建 <code>src/example_blog/log.py</code> ，初始化 log ：</p>
+<pre><code class="language-python">from logging.config import dictConfig
+
+from example_blog.config import settings
+
+
+def init_log():
+    log_config = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'sample': {'format': '%(asctime)s %(levelname)s %(message)s'},
+            'verbose': {'format': '%(asctime)s %(levelname)s %(name)s %(process)d %(thread)d %(message)s'},
+            &quot;access&quot;: {
+                &quot;()&quot;: &quot;uvicorn.logging.AccessFormatter&quot;,
+                &quot;fmt&quot;: '%(asctime)s %(levelprefix)s %(client_addr)s - &quot;%(request_line)s&quot; %(status_code)s',
+            },
+        },
+        'handlers': {
+            &quot;console&quot;: {
+                &quot;formatter&quot;: 'verbose',
+                'level': 'DEBUG',
+                &quot;class&quot;: &quot;logging.StreamHandler&quot;,
+            },
+        },
+        'loggers': {
+            '': {'level': settings.LOG_LEVEL, 'handlers': ['console']},
+        },
+    }
+
+    dictConfig(log_config)
+
+</code></pre>
+<p>提交代码：</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;feat: Add log&quot;
+</code></pre>
+<h3 id="34">3.4 数据访问</h3>
+<p>数据层是应用的最底层，和数据存储打交道。使用 <a href="https://www.sqlalchemy.org/">sqlalchemy</a> 作底层数据模型建模和数据访问操作。</p>
+<p>安装依赖：</p>
+<pre><code class="language-bash">poetry add sqlalchemy mysqlclient
+</code></pre>
+<p>查看 <code>pyproject.toml</code> ，将增加安装依赖：</p>
+<pre><code class="language-toml">[tool.poetry.dependencies]
+click = &quot;^8.1.3&quot;
+dynaconf = &quot;^3.1.11&quot;
+sqlalchemy = &quot;^1.4.44&quot;
+mysqlclient = &quot;^2.1.1&quot;
+</code></pre>
+<p>编写 <code>src/example_blog/config/settings.yml</code> ，增加数据库配置信息：</p>
+<pre><code class="language-yaml"># ######################################################################################################
+# # https://docs.sqlalchemy.org/en/13/core/engines.html
+DATABASE:
+  DRIVER: mysql
+  NAME: example_blog
+  HOST: 127.0.0.1
+  PORT: 3306
+  USERNAME: root
+  PASSWORD: root
+  QUERY:
+    charset: utf8mb4
+</code></pre>
+<p>!!! danger "警告"
+    <code>settings.yml</code> 为系统默认配置，会被 git 追踪管理，不要填写真正的数据库连接信息。真实配置信息可以写在 <code>settings.local.yml</code> 文件中，会覆盖默认配置。</p>
+<p>新建 <code>src/example_blog/db.py</code> ，创建 <a href="https://www.sqlalchemy.org/">sqlalchemy</a> 访问对象：</p>
+<pre><code class="language-python">&quot;&quot;&quot;Database connections&quot;&quot;&quot;
+
+from sqlalchemy.engine import create_engine
+from sqlalchemy.engine.base import Engine
+from sqlalchemy.engine.url import URL
+from sqlalchemy.orm import scoped_session, sessionmaker
+
+from example_blog.config import settings
+
+url = URL(
+    drivername=settings.DATABASE.DRIVER,
+    username=settings.DATABASE.get('USERNAME', None),
+    password=settings.DATABASE.get('PASSWORD', None),
+    host=settings.DATABASE.get('HOST', None),
+    port=settings.DATABASE.get('PORT', None),
+    database=settings.DATABASE.get('NAME', None),
+    query=settings.DATABASE.get('QUERY', None),
+)
+
+engine: Engine = create_engine(url, echo=True)
+
+SessionFactory = sessionmaker(bind=engine, autocommit=False, autoflush=True)
+
+ScopedSession = scoped_session(SessionFactory)
+
+</code></pre>
+<p>创建 <code>src/example_blog/models.py</code> ，创建数据模型：</p>
+<pre><code class="language-python">&quot;&quot;&quot;Models&quot;&quot;&quot;
+
+from datetime import datetime
+
+from sqlalchemy import Column, DateTime, Integer, String, Text
+from sqlalchemy.ext.declarative import declarative_base, declared_attr
+
+
+class CustomBase:
+    &quot;&quot;&quot;https://docs.sqlalchemy.org/en/13/orm/extensions/declarative/mixins.html&quot;&quot;&quot;
+
+    @declared_attr
+    def __tablename__(cls):
+        return cls.__name__.lower()
+
+    __table_args__ = {
+        'mysql_engine': 'InnoDB',
+        'mysql_collate': 'utf8mb4_general_ci'
+    }
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+
+
+BaseModel = declarative_base(cls=CustomBase)
+
+
+class Article(BaseModel):
+    &quot;&quot;&quot;Article table&quot;&quot;&quot;
+    title = Column(String(500))
+    body = Column(Text(), nullable=True)
+    create_time = Column(DateTime, default=datetime.now, nullable=False)
+    update_time = Column(DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
+
+</code></pre>
+<p>为了在应用中更方便的使用数据模型对象，引入 <a href="https://pydantic-docs.helpmanual.io/">pydantic</a> 来定义一些对象模型的基本信息。</p>
+<p>安装依赖：</p>
+<pre><code class="language-bash">poetry add pydantic
+</code></pre>
+<p>查看 <code>pyproject.toml</code> ，将增加安装依赖：</p>
+<pre><code class="language-toml">[tool.poetry.dependencies]
+click = &quot;^8.1.3&quot;
+dynaconf = &quot;^3.1.11&quot;
+sqlalchemy = &quot;^1.4.44&quot;
+mysqlclient = &quot;^2.1.1&quot;
+pydantic = &quot;^1.10.2&quot;
+</code></pre>
+<p>创建 <code>src/example_blog/schemas.py</code> ，创建对象模型：</p>
+<pre><code class="language-python">from datetime import datetime
+from typing import Optional, TypeVar
+
+from pydantic import BaseModel, constr
+
+from example_blog.models import BaseModel as DBModel
+
+ModelType = TypeVar('ModelType', bound=DBModel)
+CreateSchema = TypeVar('CreateSchema', bound=BaseModel)
+UpdateSchema = TypeVar('UpdateSchema', bound=BaseModel)
+
+
+class InDBMixin(BaseModel):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
+class BaseArticle(BaseModel):
+    title: constr(max_length=500)
+    body: Optional[str] = None
+
+
+class ArticleSchema(BaseArticle, InDBMixin):
+    create_time: datetime
+    update_time: datetime
+
+
+class CreateArticleSchema(BaseArticle):
+    pass
+
+
+class UpdateArticleSchema(BaseArticle):
+    title: Optional[constr(max_length=500)] = None
+
+</code></pre>
+<p>创建 <code>src/example_blog/dao.py</code> ，创建数据访问层：</p>
+<pre><code class="language-python">from typing import Generic, List
+
+from fastapi.encoders import jsonable_encoder
+from sqlalchemy.orm import Session
+
+from example_blog.models import Article
+from example_blog.schemas import CreateSchema, ModelType, UpdateSchema, CreateArticleSchema, UpdateArticleSchema
+
+
+class BaseDAO(Generic[ModelType, CreateSchema, UpdateSchema]):
+    model: ModelType
+
+    def get(self, session: Session, offset=0, limit=10) -&gt; List[ModelType]:
+        result = session.query(self.model).offset(offset).limit(limit).all()
+        return result
+
+    def get_by_id(self, session: Session, pk: int, ) -&gt; ModelType:
+        return session.query(self.model).get(pk)
+
+    def create(self, session: Session, obj_in: CreateSchema) -&gt; ModelType:
+        &quot;&quot;&quot;Create&quot;&quot;&quot;
+        obj = self.model(**jsonable_encoder(obj_in))
+        session.add(obj)
+        session.commit()
+        return obj
+
+    def patch(self, session: Session, pk: int, obj_in: UpdateSchema) -&gt; ModelType:
+        &quot;&quot;&quot;Patch&quot;&quot;&quot;
+        obj = self.get_by_id(session, pk)
+        update_data = obj_in.dict(exclude_unset=True)
+        for key, val in update_data.items():
+            setattr(obj, key, val)
+        session.add(obj)
+        session.commit()
+        session.refresh(obj)
+        return obj
+
+    def delete(self, session: Session, pk: int) -&gt; None:
+        &quot;&quot;&quot;Delete&quot;&quot;&quot;
+        obj = self.get_by_id(session, pk)
+        session.delete(obj)
+        session.commit()
+
+    def count(self, session: Session):
+        return session.query(self.model).count()
+
+
+class ArticleDAO(BaseDAO[Article, CreateArticleSchema, UpdateArticleSchema]):
+    model = Article
+
+</code></pre>
+<p>提交代码：</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;feat: Add models and DAO&quot;
+</code></pre>
+<h3 id="35">3.5 服务层</h3>
+<p>创建 <code>src/example_blog/services.py</code> ，创建服务：</p>
+<pre><code class="language-python">&quot;&quot;&quot;Service&quot;&quot;&quot;
+from typing import Generic, List
+
+from sqlalchemy.orm import Session
+
+from example_blog.dao import ArticleDAO, BaseDAO
+from example_blog.models import Article
+from example_blog.schemas import CreateSchema, ModelType, UpdateSchema
+
+
+class BaseService(Generic[ModelType, CreateSchema, UpdateSchema]):
+    dao: BaseDAO
+
+    def get(self, session: Session, offset=0, limit=10) -&gt; List[ModelType]:
+        &quot;&quot;&quot;&quot;&quot;&quot;
+        return self.dao.get(session, offset=offset, limit=limit)
+
+    def total(self, session: Session) -&gt; int:
+        return self.dao.count(session)
+
+    def get_by_id(self, session: Session, pk: int) -&gt; ModelType:
+        &quot;&quot;&quot;Get by id&quot;&quot;&quot;
+        return self.dao.get_by_id(session, pk)
+
+    def create(self, session: Session, obj_in: CreateSchema) -&gt; ModelType:
+        &quot;&quot;&quot;Create a object&quot;&quot;&quot;
+        return self.dao.create(session, obj_in)
+
+    def patch(self, session: Session, pk: int, obj_in: UpdateSchema) -&gt; ModelType:
+        &quot;&quot;&quot;Update&quot;&quot;&quot;
+        return self.dao.patch(session, pk, obj_in)
+
+    def delete(self, session: Session, pk: int) -&gt; None:
+        &quot;&quot;&quot;Delete a object&quot;&quot;&quot;
+        return self.dao.delete(session, pk)
+
+
+class ArticleService(BaseService[Article, CreateSchema, UpdateSchema]):
+    dao = ArticleDAO()
+
+</code></pre>
+<p>提交代码：</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;feat: Add services.&quot;
+</code></pre>
+<h3 id="36-fastapi">3.6 引入 Fastapi</h3>
+<p><a href="https://fastapi.tiangolo.com/">Fastapi</a> 是一个轻量的 Web 框架，现在引入，使其作为 API 层</p>
+<p>安装依赖：</p>
+<pre><code class="language-bash">poetry add fastapi uvicorn
+</code></pre>
+<p>查看 <code>pyproject.toml</code> ，增加安装依赖：</p>
+<pre><code class="language-toml">[tool.poetry.dependencies]
+click = &quot;^8.1.3&quot;
+dynaconf = &quot;^3.1.11&quot;
+sqlalchemy = &quot;^1.4.44&quot;
+mysqlclient = &quot;^2.1.1&quot;
+pydantic = &quot;^1.10.2&quot;
+fastapi = &quot;^0.88.0&quot;
+uvicorn = &quot;^0.20.0&quot;
+</code></pre>
+<p>创建 <code>src/examp.e_blog/views.py</code> ，创建视图：</p>
+<pre><code class="language-python">from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+
+from example_blog.dependencies import CommonQueryParams, get_db
+from example_blog.schemas import (ArticleSchema, CreateArticleSchema,
+                                  UpdateArticleSchema)
+from example_blog.services import ArticleService
+
+router = APIRouter()
+
+_service = ArticleService()
+
+
+@router.get('/articles')
+def get(
+        session: Session = Depends(get_db),
+        commons: CommonQueryParams = Depends()
+):
+    return _service.get(session, offset=commons.offset, limit=commons.limit)
+
+
+@router.get('/articles/{pk}')
+def get_by_id(
+        pk: int,
+        session: Session = Depends(get_db)
+):
+    return _service.get_by_id(session, pk)
+
+
+@router.post('/articles', response_model=ArticleSchema)
+def create(
+        obj_in: CreateArticleSchema,
+        session: Session = Depends(get_db),
+):
+    return _service.create(session, obj_in)
+
+
+@router.patch('/articles/{pk}', response_model=ArticleSchema)
+def patch(
+        pk: int,
+        obj_in: UpdateArticleSchema,
+        session: Session = Depends(get_db)
+):
+    return _service.patch(session, pk, obj_in)
+
+
+@router.delete('/articles/{pk}')
+def delete(
+        pk: int,
+        session: Session = Depends(get_db)
+):
+    return _service.delete(session, pk)
+
+</code></pre>
+<p>创建 <code>src/example_blog/middlewares.py</code> ，创建数据库会话中间件：</p>
+<pre><code class="language-python">from typing import Callable
+
+from fastapi import FastAPI, Request, Response
+
+from example_blog.db import SessionFactory
+
+
+async def db_session_middleware(request: Request, call_next: Callable) -&gt; Response:
+    response = Response('Internal server error', status_code=500)
+    try:
+        request.state.db = SessionFactory()
+        response = await call_next(request)
+    finally:
+        request.state.db.close()
+
+    return response
+
+
+def init_middleware(app: FastAPI) -&gt; None:
+    app.middleware('http')(db_session_middleware)
+
+</code></pre>
+<p>创建 <code>src/example_blog/dependencies.py</code> ，创建 Fastapi 的依赖项：</p>
+<pre><code class="language-python">from fastapi import Request
+from sqlalchemy.orm import Session
+
+
+def get_db(request: Request) -&gt; Session:
+    return request.state.db
+
+
+class CommonQueryParams:
+    def __init__(self, offset: int = 1, limit: int = 10):
+        self.offset = offset - 1
+        if self.offset &lt; 0:
+            self.offset = 0
+        self.limit = limit
+
+        if self.limit &lt; 0:
+            self.limit = 10
+</code></pre>
+<p>创建 <code>src/example_blog/routes.py</code> ，创建路由：</p>
+<pre><code class="language-python">from fastapi import APIRouter, FastAPI
+
+from example_blog import views
+
+
+def router_v1():
+    router = APIRouter()
+    router.include_router(views.router, tags=['Article'])
+    return router
+
+
+def init_routers(app: FastAPI):
+    app.include_router(router_v1(), prefix='/api/v1', tags=['v1'])
+
+</code></pre>
+<p>创建 <code>src/example_blog/server.py</code> ，创建服务启动逻辑：</p>
+<pre><code class="language-python">&quot;&quot;&quot;server&quot;&quot;&quot;
+import uvicorn
+from fastapi import FastAPI
+
+from example_blog import middlewares, routes
+from example_blog.config import settings
+from example_blog.log import init_log
+
+
+class Server:
+
+    def __init__(self):
+        init_log()
+        self.app = FastAPI()
+
+    def init_app(self):
+        middlewares.init_middleware(self.app)
+        routes.init_routers(self.app)
+
+    def run(self):
+        self.init_app()
+        uvicorn.run(
+            app=self.app,
+            host=settings.HOST,
+            port=settings.PORT,
+        )
+
+</code></pre>
+<p>修改 <code>src/example_blog/config/settings.yml</code> ，增加服务配置：</p>
+<pre><code class="language-yml">HOST: 127.0.0.1
+PORT: 8000
+</code></pre>
+<p>提交代码：</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;feat: Add api service.&quot;
+</code></pre>
+<h3 id="37">3.7 编写启动命令</h3>
+<p>编辑 <code>src/example_blog/cmdline.py</code> ，增加启动 Server 逻辑：</p>
+<pre><code class="language-python">@main.command()
+@click.option('-h', '--host', show_default=True, help=f'Host IP. Default: {settings.HOST}')
+@click.option('-p', '--port', show_default=True, type=int, help=f'Port. Default: {settings.PORT}')
+@click.option('--level', help='Log level')
+def server(host, port, level):
+    &quot;&quot;&quot;Start server.&quot;&quot;&quot;
+    kwargs = {
+        'LOGLEVEL': level,
+        'HOST': host,
+        'PORT': port,
+    }
+    for name, value in kwargs.items():
+        if value:
+            settings.set(name, value)
+
+    Server().run()
+
+</code></pre>
+<p>提交代码：</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;feat: Add server cmdline.&quot;
+</code></pre>
+<h3 id="38-server">3.8 启动 Server</h3>
+<p>将本项目以可编辑方式安装到当前 Python 环境：</p>
+<pre><code class="language-bash">pip install -e .
+</code></pre>
+<p>命令行运行：</p>
+<pre><code class="language-bash">example_blog server
+</code></pre>
+<p>可以看到如下输出：</p>
+<pre><code class="language-txt">INFO:     Started server process [21687]
+2020-12-28 18:11:56,341 INFO uvicorn.error 21687 139772921304768 Started server process [21687]
+INFO:     Waiting for application startup.
+2020-12-28 18:11:56,341 INFO uvicorn.error 21687 139772921304768 Waiting for application startup.
+INFO:     Application startup complete.
+2020-12-28 18:11:56,341 INFO uvicorn.error 21687 139772921304768 Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2020-12-28 18:11:56,341 INFO uvicorn.error 21687 139772921304768 Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+</code></pre>
+<p>浏览器打开 <a href="http://127.0.0.1:8000/docs">http://127.0.0.1:8000/docs</a> 即可查看接口文档。</p>
+<p>提交代码</p>
+<h3 id="39">3.9 引入迁移工具</h3>
+<p>为了便于数据模型变更，引入 <a href="https://alembic.sqlalchemy.org/en/latest/">alembic</a> 做数据库迁移。</p>
+<p>安装依赖：</p>
+<pre><code class="language-bash">poetry add alembic
+</code></pre>
+<p>查看 <code>pyproject.toml</code> ，将增加安装依赖：</p>
+<pre><code class="language-toml">[tool.poetry.dependencies]
+click = &quot;^8.1.3&quot;
+dynaconf = &quot;^3.1.11&quot;
+sqlalchemy = &quot;^1.4.44&quot;
+mysqlclient = &quot;^2.1.1&quot;
+pydantic = &quot;^1.10.2&quot;
+fastapi = &quot;^0.88.0&quot;
+uvicorn = &quot;^0.20.0&quot;
+alembic = &quot;^1.8.1&quot;
+</code></pre>
+<p>初始化 alembic ：</p>
+<pre><code class="language-bash">alembic init migration
+mv alembic.ini src/example_blog/migration
+</code></pre>
+<p>将 alembic 的相关文件全部放到 <code>src/example_blog/migration</code> 目录中</p>
+<p>修改 <code>src/example_blog/migration/alembic.ini</code> ：</p>
+<pre><code class="language-ini"># A generic, single database configuration.
+
+[alembic]
+# path to migration scripts
+;script_location = src/example_blog/migration
+script_location = .
+
+# template used to generate migration files
+# file_template = %%(rev)s_%%(slug)s
+
+# timezone to use when rendering the date
+# within the migration file as well as the filename.
+# string value is passed to dateutil.tz.gettz()
+# leave blank for localtime
+# timezone =
+
+# max length of characters to apply to the
+# &quot;slug&quot; field
+# truncate_slug_length = 40
+
+# set to 'true' to run the environment during
+# the 'revision' command, regardless of autogenerate
+# revision_environment = false
+
+# set to 'true' to allow .pyc and .pyo files without
+# a source .py file to be detected as revisions in the
+# versions/ directory
+# sourceless = false
+
+# version location specification; this defaults
+# to src/example_blog/migration/versions.  When using multiple version
+# directories, initial revisions must be specified with --version-path
+# version_locations = %(here)s/bar %(here)s/bat src/example_blog/migration/versions
+
+# the output encoding used when revision files
+# are written from script.py.mako
+# output_encoding = utf-8
+
+;sqlalchemy.url = driver://user:pass@localhost/dbname
+
+
+[post_write_hooks]
+# post_write_hooks defines scripts or Python functions that are run
+# on newly generated revision scripts.  See the documentation for further
+# detail and examples
+
+# format using &quot;black&quot; - use the console_scripts runner, against the &quot;black&quot; entrypoint
+# hooks=black
+# black.type=console_scripts
+# black.entrypoint=black
+# black.options=-l 79
+
+# Logging configuration
+[loggers]
+keys = root,sqlalchemy,alembic
+
+[handlers]
+keys = console
+
+[formatters]
+keys = generic
+
+[logger_root]
+level = WARN
+handlers = console
+qualname =
+
+[logger_sqlalchemy]
+level = WARN
+handlers =
+qualname = sqlalchemy.engine
+
+[logger_alembic]
+level = INFO
+handlers =
+qualname = alembic
+
+[handler_console]
+class = StreamHandler
+args = (sys.stderr,)
+level = NOTSET
+formatter = generic
+
+[formatter_generic]
+format = %(levelname)-5.5s [%(name)s] %(message)s
+datefmt = %H:%M:%S
+
+</code></pre>
+<p>修改 <code>src/example_blog/migration/env.py</code> ：</p>
+<pre><code class="language-python">from logging.config import fileConfig
+
+from alembic import context
+from sqlalchemy import engine_from_config, pool
+
+from example_blog import db
+from example_blog.models import BaseModel
+
+# this is the Alembic Config object, which provides
+# access to the values within the .ini file in use.
+config = context.config
+
+# Interpret the config file for Python logging.
+# This line sets up loggers basically.
+fileConfig(config.config_file_name)
+
+# add your model's MetaData object here
+# for 'autogenerate' support
+# from myapp import mymodel
+# target_metadata = mymodel.Base.metadata
+# target_metadata = None
+
+target_metadata = BaseModel.metadata
+
+
+# other values from the config, defined by the needs of env.py,
+# can be acquired:
+# my_important_option = config.get_main_option(&quot;my_important_option&quot;)
+# ... etc.
+
+
+def run_migrations_offline():
+    &quot;&quot;&quot;Run migrations in 'offline' mode.
+
+    This configures the context with just a URL
+    and not an Engine, though an Engine is acceptable
+    here as well.  By skipping the Engine creation
+    we don't even need a DBAPI to be available.
+
+    Calls to context.execute() here emit the given string to the
+    script output.
+
+    &quot;&quot;&quot;
+    context.configure(
+        url=db.url,
+        target_metadata=target_metadata,
+        literal_binds=True,
+        dialect_opts={&quot;paramstyle&quot;: &quot;named&quot;},
+    )
+
+    with context.begin_transaction():
+        context.run_migrations()
+
+
+def run_migrations_online():
+    &quot;&quot;&quot;Run migrations in 'online' mode.
+
+    In this scenario we need to create an Engine
+    and associate a connection with the context.
+
+    &quot;&quot;&quot;
+    configuration = config.get_section(config.config_ini_section)
+    configuration['sqlalchemy.url'] = str(db.url)
+    connectable = engine_from_config(
+        configuration,
+        prefix=&quot;sqlalchemy.&quot;,
+        poolclass=pool.NullPool,
+    )
+
+    with connectable.connect() as connection:
+        context.configure(
+            connection=connection, target_metadata=target_metadata
+        )
+
+        with context.begin_transaction():
+            context.run_migrations()
+
+
+if context.is_offline_mode():
+    run_migrations_offline()
+else:
+    run_migrations_online()
+
+</code></pre>
+<p>编写 <code>src/example_blog/cmdline.py</code> ，创建迁移命令：</p>
+<pre><code class="language-python">from pathlib import Path
+
+from alembic import config
+from click import Context
+
+
+@main.command()
+@click.pass_context
+@click.option('-h', '--help', is_flag=True)
+@click.argument('args', nargs=-1)
+def migrate(ctx: Context, help, args):
+    &quot;&quot;&quot;usage migrate -- arguments    &quot;&quot;&quot;
+    with utils.chdir(Path(__file__).parent / 'migration'):
+        argv = list(args)
+        if help:
+            argv.append('--help')
+        config.main(prog=ctx.command_path, argv=argv)
+
+</code></pre>
+<p>创建 <code>utils.py</code> ：</p>
+<pre><code class="language-python">&quot;&quot;&quot;Utils&quot;&quot;&quot;
+
+import contextlib
+import os
+from os import PathLike
+from typing import Union
+
+
+@contextlib.contextmanager
+def chdir(path: Union[str, PathLike]):
+    cwd = os.getcwd()
+    os.chdir(path)
+    yield
+    os.chdir(cwd)
+
+</code></pre>
+<p>!!! info "提示"
+    由于使用了 click 包装了 alembic 命令，在使用上会有点不同，默认应该使用 <code>migrate --</code> 后加 alembic 的其他参数，否则多参数的情况下会无法识别。</p>
+<p>为了将 <code>src/example_blog/migration</code> 打包到项目中，需要将其变成 Python 包。</p>
+<p>创建 <code>src/example_blog/migration/__init__.py</code> 和 <code>src/example_blog/migration/versions/__init__.py</code></p>
+<p>创建空白数据库迁移版本：</p>
+<pre><code class="language-bash">example_blog migrate -- revision -m &quot;init&quot;
+</code></pre>
+<p>执行迁移：</p>
+<pre><code class="language-bash">example_blog migrate -- upgrade head
+</code></pre>
+<p>创建第一个数据库迁移版本：</p>
+<pre><code class="language-bash">example_blog migrate -- revision --autogenerate -m &quot;init_table&quot;
+</code></pre>
+<p>执行迁移：</p>
+<pre><code class="language-bash">example_blog migrate -- upgrade head
+</code></pre>
+<p>提交代码：</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;Add alembic migrate.&quot;
+</code></pre>
+<h2 id="4">4. 测试和优化代码</h2>
+<p>测试是软件开发中重要的一环，能够在发布之前检查出更多可能出现的异常情况。</p>
+<p>测试框架选用比较常用的 <a href="https://docs.pytest.org/en/stable/">pytest</a> ，它具有强大的功能和很好的兼容性。</p>
+<p>安装依赖：</p>
+<pre><code class="language-bash">poetry add -D pytest
+</code></pre>
+<p>创建 <code>tests/settings.yml</code> ，初始化测试配置：</p>
+<pre><code class="language-yml">DEBUG: false
+LOG_LEVEL: INFO
+
+HOST: 127.0.0.1
+PORT: 8000
+
+DATABASE:
+  DRIVER: mysql
+  NAME: example_blog
+  HOST: 127.0.0.1
+  PORT: 3306
+  USERNAME: root
+  PASSWORD: root
+  QUERY:
+    charset: utf8mb4
+</code></pre>
+<p>编辑 <code>tests/__init__.py</code> ，加载测试配置：</p>
+<pre><code class="language-python">import os
+
+from example_blog.config import settings
+
+settings.load_file(os.path.join(os.path.dirname(__file__), 'settings.yml'))
+settings.load_file(os.path.join(os.path.dirname(__file__), 'settings.local.yml'))
+
+</code></pre>
+<p>虽然本地开发配置可以临时调整，但对于开发环境和测试环境依然有些不一样。从上面代码中可以看到加载了两个测试配置，和 Dynaconf 规则一样， <code>settings.local.yml</code> 配置为本地配置，不会被代码追踪，只不过这里是手动实现的。</p>
+<p>提交代码：</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;test: Init test.&quot;
+</code></pre>
+<h3 id="41">4.1 测试数据访问层</h3>
+<p>编写测试配置：</p>
+<p>新建 <code>tests/conftest.py</code> ，创建测试配置：</p>
+<pre><code class="language-python">&quot;&quot;&quot;Test config&quot;&quot;&quot;
+
+import os
+from pathlib import Path
+
+import pytest
+from alembic import command, config
+
+from sqlalchemy.orm import Session
+
+from example_blog import migration
+from example_blog.config import settings
+from example_blog.db import SessionFactory
+from example_blog.models import Article
+
+
+@pytest.fixture()
+def migrate():
+    &quot;&quot;&quot;Re-init database when run a test.&quot;&quot;&quot;
+    os.chdir(Path(migration.__file__).parent)
+    alembic_config = config.Config('./alembic.ini')
+    alembic_config.set_main_option('script_location', os.getcwd())
+    print('\n----- RUN ALEMBIC MIGRATION: -----\n')
+    command.downgrade(alembic_config, 'base')
+    command.upgrade(alembic_config, 'head')
+    try:
+        yield
+    finally:
+        command.downgrade(alembic_config, 'base')
+        db_name = settings.DATABASE.get('NAME')
+        if settings.DATABASE.DRIVER == 'sqlite' and os.path.isfile(db_name):
+            try:
+                os.remove(db_name)
+            except FileNotFoundError:
+                pass
+
+
+@pytest.fixture()
+def session(migrate) -&gt; Session:
+    &quot;&quot;&quot;session fixture&quot;&quot;&quot;
+    _s = SessionFactory()
+    yield _s
+    _s.close()
+
+
+@pytest.fixture()
+def init_article(session):
+    &quot;&quot;&quot;Init article&quot;&quot;&quot;
+    a_1 = Article(title='Hello world', body='Hello world, can you see me?')
+    a_2 = Article(title='Love baby', body='I love you everyday, and i want with you.')
+    a_3 = Article(title='Tomorrow', body='When the sun rises, this day is fine day, cheer up.')
+    session.add_all([a_1, a_2, a_3])
+    session.commit()
+
+</code></pre>
+<p>编写数据访问层用例：</p>
+<pre><code class="language-python">import pytest
+
+from example_blog.dao import ArticleDAO
+from example_blog.models import Article
+from example_blog.schemas import CreateArticleSchema, UpdateArticleSchema
+
+
+class TestArticle:
+
+    @pytest.fixture()
+    def dao(self, init_article):
+        yield ArticleDAO()
+
+    def test_get(self, dao, session):
+        users = dao.get(session)
+        assert len(users) == 3
+        users = dao.get(session, limit=2)
+        assert len(users) == 2
+        users = dao.get(session, offset=4)
+        assert not users
+
+    def test_get_by_id(self, dao, session):
+        user = dao.get_by_id(session, 1)
+        assert user.id == 1
+
+    def test_create(self, dao, session):
+        origin_count = session.query(dao.model).count()
+        obj_in = CreateArticleSchema(title='test')
+        dao.create(session, obj_in)
+        count = session.query(dao.model).count()
+        assert origin_count + 1 == count
+
+    def test_patch(self, dao, session):
+        obj: Article = session.query(dao.model).first()
+        body = obj.body
+        obj_in = UpdateArticleSchema(body='test')
+        updated_obj: Article = dao.patch(session, obj.id, obj_in)
+        assert body != updated_obj.body
+
+    def test_delete(self, dao, session):
+        origin_count = session.query(dao.model).count()
+        dao.delete(session, 1)
+        count = session.query(dao.model).count()
+        assert origin_count - 1 == count
+
+    def test_count(self, dao, session):
+        count = dao.count(session)
+        assert count == 3
+
+</code></pre>
+<p>运行测试：</p>
+<pre><code class="language-bash">pytest tests/test_dao.py
+</code></pre>
+<p>如果运行成功，则测试正确。</p>
+<p>提交代码：</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;test: Add dao test.&quot;
+</code></pre>
+<h3 id="42">4.2 测试服务层</h3>
+<p>创建 <code>tests/test_services.py</code> ，创建测试用例：</p>
+<pre><code class="language-python">import pytest
+
+from example_blog.schemas import CreateArticleSchema, UpdateArticleSchema
+from example_blog.services import ArticleService
+
+
+class TestArticleService:
+
+    @pytest.fixture()
+    def service(self, init_article):
+        yield ArticleService()
+
+    def test_get(self, service, session):
+        objs = service.get(session)
+        assert len(objs) == 3
+        objs = service.get(session, limit=2)
+        assert len(objs) == 2
+        objs = service.get(session, offset=5)
+        assert not objs
+
+    def test_total(self, service, session):
+        total = service.total(session)
+        assert total == 3
+
+    def test_by_id(self, service, session):
+        __obj = session.query(service.dao.model).first()
+        obj = service.get_by_id(session, __obj.id)
+        assert obj.id == __obj.id
+
+    def test_create(self, service, session):
+        origin_count = service.total(session)
+        obj_in = CreateArticleSchema(title='test')
+        service.create(session, obj_in)
+        count = service.total(session)
+        assert origin_count + 1 == count
+
+    def test_patch(self, service, session):
+        origin_obj = session.query(service.dao.model).first()
+        body = origin_obj.body
+        obj_in = UpdateArticleSchema(body='test')
+        obj = service.patch(session, origin_obj.id, obj_in)
+        assert body != obj.body
+
+    def test_delete(self, service, session):
+        origin_count = service.total(session)
+        obj = session.query(service.dao.model).first()
+        service.delete(session, obj.id)
+        count = service.total(session)
+        assert origin_count - 1 == count
+
+</code></pre>
+<p>运行测试：</p>
+<pre><code class="language-bash">pytest tests/test_services.py
+</code></pre>
+<p>如果运行成功，则测试正确。</p>
+<p>提交代码：</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;test: Add service test.&quot;
+</code></pre>
+<h3 id="43">4.3 测试试图层</h3>
+<p>编辑 <code>tests/conftest.py</code> ，创建测试配置：</p>
+<pre><code class="language-python">from fastapi.testclient import TestClient
+
+from example_blog import migration, server
+
+
+
+@pytest.fixture
+def client():
+    &quot;&quot;&quot;Fast api test client factory&quot;&quot;&quot;
+    _s = server.Server()
+    _s.init_app()
+    _c = TestClient(app=_s.app)
+    yield _c
+
+</code></pre>
+<p>由于 Fastapi 的 <code>TestClient</code> 依赖 <code>requests</code> ，所以需要先安装：</p>
+<pre><code class="language-bash">poetry add -D requests
+</code></pre>
+<p>创建 <code>tests/test_views.py</code> ，测试试图：</p>
+<pre><code class="language-python">import pytest
+from fastapi.encoders import jsonable_encoder
+from fastapi.responses import Response
+
+from example_blog.models import Article
+from example_blog.schemas import ModelType
+
+
+def test_docs(client):
+    &quot;&quot;&quot;Test view&quot;&quot;&quot;
+    response = client.get('/docs')
+    assert response.status_code == 200
+
+
+class BaseTest:
+    version = 'v1'
+    base_url: str
+    model: ModelType
+
+    @pytest.fixture()
+    def init_data(self):
+        pass
+
+    def url(self, pk: int = None) -&gt; str:
+        url_split = ['api', self.version, self.base_url]
+        if pk:
+            url_split.append(str(pk))
+        return '/'.join(url_split)
+
+    def assert_response_ok(self, response: Response):
+        assert response.status_code == 200
+
+    def test_get(self, client, session, init_data):
+        count = session.query(self.model).count()
+        response = client.get(self.url())
+        self.assert_response_ok(response)
+        assert count == len(response.json())
+
+    def test_get_by_id(self, client, session, init_data):
+        obj = session.query(self.model).first()
+        response = client.get(self.url(obj.id))
+        self.assert_response_ok(response)
+        assert jsonable_encoder(obj) == response.json()
+
+    def test_delete(self, client, session, init_data):
+        count = session.query(self.model).count()
+        session.close()
+        response = client.delete(self.url(1))
+        self.assert_response_ok(response)
+        after_count = session.query(self.model).count()
+        assert after_count == 2
+        assert count - 1 == after_count
+
+
+class TestArticle(BaseTest):
+    model = Article
+    base_url = 'articles'
+
+    @pytest.fixture()
+    def init_data(self, init_article):
+        pass
+
+    def test_create(self, client, session, init_data):
+        response = client.post(
+            self.url(),
+            json={'title': 'xxx'}
+        )
+        self.assert_response_ok(response)
+        assert response.json().get('title') == 'xxx'
+
+    def test_patch(self, client, session, init_data):
+        obj = session.query(Article).first()
+        response = client.patch(self.url(obj.id), json={'body': 'xxx'})
+        self.assert_response_ok(response)
+        assert response.json().get('body') != obj.body
+
+</code></pre>
+<p>运行测试：</p>
+<pre><code class="language-bash">pytest tests/test_views.py
+</code></pre>
+<p>如果运行成功，则测试正确。</p>
+<p>提交代码：</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;test: Add view test.&quot;
+</code></pre>
+<h3 id="44">4.4 测试命令行</h3>
+<p>编辑 <code>tests/conftest.py</code> ，创建测试配置：</p>
+<pre><code class="language-python">from click.testing import CliRunner
+
+
+@pytest.fixture
+def cli():
+    runner = CliRunner(echo_stdin=True, mix_stderr=False)
+    yield runner
+
+</code></pre>
+<p>创建 <code>tests/test_cmdline.py</code> ，创建测试用例：</p>
+<pre><code class="language-python">import uvicorn
+from alembic import config
+
+import example_blog
+from example_blog import cmdline
+
+
+def test_main(cli):
+    result = cli.invoke(cmdline.main)
+    assert result.exit_code == 0
+    result = cli.invoke(cmdline.main, '-V')
+    assert result.exit_code == 0
+    assert str(result.output).strip() == example_blog.__version__
+
+
+def test_run(cli, mocker):
+    mock_run = mocker.patch.object(uvicorn, 'run')
+    result = cli.invoke(cmdline.main, ['server', '-h', '127.0.0.1', '-p', '8080'])
+    assert result.exit_code == 0
+    mock_run.assert_called_once_with(app=mocker.ANY, host='127.0.0.1', port=8080)
+
+
+def test_migrate(cli, mocker):
+    mock_main = mocker.patch.object(config, 'main')
+    cli.invoke(cmdline.main, ['migrate', '--help'])
+    mock_main.assert_called_once()
+
+</code></pre>
+<p>因为单元测试中使用了 <a href="https://docs.python.org/3/library/unittest.mock.html">mock</a> ，所以安装配合 pytest 使用的 <a href="https://github.com/pytest-dev/pytest-mock/">pytest-mock</a></p>
+<pre><code class="language-bash">poetry add -D pytest-mock
+</code></pre>
+<p>运行测试：</p>
+<pre><code class="language-bash">pytest tests/test_views.py
+</code></pre>
+<p>如果运行成功，则测试正确。</p>
+<p>提交代码：</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;test: Add cmdline test.&quot;
+</code></pre>
+<h3 id="45">4.5 其他测试</h3>
+<p>创建 <code>tests/test_dependencies.py</code> ，创建测试用例：</p>
+<pre><code class="language-python">import pytest
+
+from example_blog.dependencies import CommonQueryParams
+
+
+@pytest.mark.parametrize(
+    ['args', 'expect_value'],
+    [
+        ((), (0, 10)),
+        ((0,), (0, 10)),
+        ((-10, -10), (0, 10)),
+        ((5, 100), (4, 100)),
+    ]
+)
+def test_common_query_params(args, expect_value):
+    params = CommonQueryParams(*args)
+    assert params.offset == expect_value[0]
+    assert params.limit == expect_value[1]
+
+</code></pre>
+<p>创建 <code>tests/test_utils.py</code> ，创建测试用例：</p>
+<pre><code class="language-python">import os
+
+from example_blog.utils import chdir
+
+
+def test_chdir():
+    path = '/tmp'
+    cwd = os.getcwd()
+    with chdir(path):
+        assert path == os.getcwd()
+    assert cwd == os.getcwd()
+
+</code></pre>
+<p>运行测试：</p>
+<pre><code class="language-bash">pytest
+</code></pre>
+<p>如果运行成功，则测试正确。</p>
+<p>提交代码：</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;test: Add other test.&quot;
+</code></pre>
+<p>至此，所有测试运行完毕，除了 <code>src/example_blog/migration</code> 之外的包的测试已经可以全部覆盖。</p>
+<h3 id="46">4.6 优化代码</h3>
+<p>代码风格和代码规范是一个开发人员开发修养的体现，好的代码能够让人眼前一亮。为了规范，社区开发许多工具用于检测代码。</p>
+<h4 id="461">4.6.1 优化导入</h4>
+<p><a href="https://pycqa.github.io/isort/">isort</a> 是一个自动格式化导入的工具。</p>
+<p>安装依赖：</p>
+<pre><code class="language-bash">poetry add -D isort
+</code></pre>
+<p>格式化代码：</p>
+<pre><code class="language-bash">isort .
+</code></pre>
+<p>此时可以不用先急着提交，在后面对代码风格检测的时候可能还会再次格式化代码。</p>
+<h4 id="462">4.6.2 优化代码风格</h4>
+<p><a href="https://flake8.pycqa.org/en/latest/">flake8</a> 是一个遵循 <a href="https://www.python.org/dev/peps/pep-0008/">PEP8</a> 规范检测代码的工具。使用该工具，可以检测出哪些代码不符合 PEP8 规范。</p>
+<p>安装依赖：</p>
+<pre><code class="language-bash">poetry add -D flake8
+</code></pre>
+<p>检测代码：</p>
+<pre><code class="language-bash">flake8
+</code></pre>
+<p>根据输出提示，参照 <a href="https://www.flake8rules.com/">flake8 规则</a> 进行调整，直至完全符合为止。</p>
+<p>提交代码：</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;feat: Lint code&quot;
+</code></pre>
+<h2 id="5">5. 打包发布</h2>
+<p>到这一步， <code>pyproject.toml</code> 文件应该是这样的：</p>
+<pre><code class="language-toml">[tool.poetry]
+name = &quot;example_blog&quot;
+version = &quot;0.1.0&quot;
+description = &quot;This is example blog system.&quot;
+authors = [&quot;huagang &lt;huagang517@126.com&gt;&quot;]
+readme = &quot;README.md&quot;
+
+[tool.poetry.dependencies]
+python = &quot;^3.10&quot;
+fastapi-sa = &quot;^0.0.1.dev0&quot;
+sqlalchemy = &quot;^1.4.44&quot;
+mysqlclient = &quot;^2.1.1&quot;
+pydantic = &quot;^1.10.2&quot;
+dynaconf = &quot;^3.1.11&quot;
+fastapi = &quot;^0.88.0&quot;
+uvicorn = &quot;^0.20.0&quot;
+alembic = &quot;^1.8.1&quot;
+
+[tool.poetry.group.dev.dependencies]
+pytest = &quot;^7.2.0&quot;
+isort = &quot;^5.10.1&quot;
+requests = &quot;^2.28.1&quot;
+pytest-mock = &quot;^3.10.0&quot;
+flake8 = &quot;^6.0.0&quot;
+
+[tool.poetry.scripts]
+example_blog = &quot;example_blog.cmdline:main&quot;
+
+[build-system]
+requires = [&quot;poetry-core&quot;]
+build-backend = &quot;poetry.core.masonry.api&quot;
+</code></pre>
+<p>在整个开发过程中，是逐步丰富此文件的。这是项目的描述文件，描述了打包的配置信息。</p>
+<h3 id="51">5.1 打包</h3>
+<pre><code class="language-bash">poetry build
+</code></pre>
+<p>在 <code>dist</code> 目录中可以看到两个文件，一个是 <code>.tar.gz</code> 的源码打包文件，一个是 <code>.whl</code> 的二进制文件。</p>
+<h3 id="52">5.2 发布</h3>
+<p>将开发好的项目发布到索引仓库，或内网的私有仓库。</p>
+<p>使用 <a href="https://python-poetry.org/docs/cli/#publish">poetry</a> 上传：</p>
+<pre><code class="language-bash">poetry publish
+</code></pre>
+<p>[^2]: 现在 Anaconda / Miniconda 在 Windows 上使用虚拟环境工具 <a href="https://virtualenv.pypa.io/en/latest/">Virtualenv</a> 存在一些兼容问题，而且 Pipenv 是依赖这个工具的。请参考 <a href="https://github.com/pypa/virtualenv/issues/1986">conda support - Windows 3.7+ #1986</a> 和 <a href="https://github.com/ContinuumIO/anaconda-issues/issues/12094">virtualenv==20.0.34 not compatible with python on windows #12094</a></p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["search.highlight", "navigation.sections", "navigation.top", "navigation.tabs", "navigation.tracking"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>
