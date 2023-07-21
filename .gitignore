@@ -162,3 +162,7 @@ cython_debug/
 .idea/
 
 docs/
+mkdocs.yml
+pyproject.toml
+poetry.lock
+README.md
